@@ -28,11 +28,11 @@ To help us resolve your issue quickly, please include your App Version (found in
 
 This feature has three requirements to work. If it is not loading, please check the following:
 
-    1. **Health Permissions:** You must grant the app permission to *read* data from the Apple Health app.
+1. **Health Permissions:** You must grant the app permission to *read* data from the Apple Health app.
 
-    2. **Health Profile:** Your Apple Health profile must have your **Date of Birth** and **Biological Sex** entered. The app needs this information for its calculations.
+2. **Health Profile:** Your Apple Health profile must have your **Date of Birth** and **Biological Sex** entered. The app needs this information for its calculations.
 
-    3. **Health Data:** You must have at least one **VO2 Max** or **Resting Heart Rate** measurement recorded in Apple Health.
+3. **Health Data:** You must have at least one **VO2 Max** or **Resting Heart Rate** measurement recorded in Apple Health.
 
 **How do I get VO2 Max data?**
 
