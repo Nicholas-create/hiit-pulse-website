@@ -1,79 +1,72 @@
-# Terms of Use
+# Terms and Conditions for HIIT Timer
 
-**Last updated: 15 November 2025**
+**Last Updated:** 15 November 2025
 
-These Terms of Use ("Terms") govern your use of the HIIT Timer iPhone application (the "App") and this website. By downloading, installing or using the App, you agree to be bound by these Terms.
+These Terms and Conditions ("Terms") govern your use of the HIIT Timer mobile application (the "App") provided by [Your Company/Developer Name] ("we", "us", "our").
 
-## 1. Who we are
+By downloading, accessing, or using the App, you agree to be bound by these Terms. If you disagree with any part of these terms, you must not use the App.
 
-HIIT Timer is a mobile application designed to help you run interval training and workout timers on your iPhone.
+### 1. IMPORTANT: Medical & Health Disclaimer
 
-## 2. Eligibility
+**You must consult with your doctor, physician, or other qualified health provider before starting any new exercise programme or changing your existing one.**
 
-You may use the App only if you are legally allowed to form a binding contract in your country of residence. By using the App, you confirm that you meet this requirement.
+The App provides a timer and informational features, such as the "Cardio Age" calculation, for educational and motivational purposes only. The App and its content are **not** medical advice, nor are they intended to be a substitute for professional medical advice, diagnosis, or treatment.
 
-## 3. Health and safety
+Never disregard professional medical advice or delay in seeking it because of information you have seen on or through the App. All exercise involves a risk of physical injury. You agree that you are using the App's features **entirely at your own risk** and assume all responsibility for any injuries, damages, or health complications that may result.
 
-The App is a timing tool only. It does not provide medical advice, training plans, or health guidance. Always consult a doctor or other qualified health professional before starting a new exercise programme, especially if you have any medical conditions or concerns.
+### 2. Licence to Use the App
 
-You use the App at your own risk. Stop exercising immediately if you feel unwell, dizzy or in pain, and seek medical advice.
+We grant you a limited, non-exclusive, non-transferable, revocable licence to use the App for your own personal, non-commercial use on an iOS device that you own or control, as permitted by the Apple App Store Terms of Service.
 
-## 4. Licence to use the App
+### 3. Intellectual Property
 
-Subject to these Terms, we grant you a limited, non-exclusive, non-transferable licence to download and use the App on an iOS device that you own or control, solely for your personal, non-commercial use.
+The App, its features, and all original content, including but not limited to its visual design, source code (such as `ActiveTimerViewModel.swift` and `CardioAgeCalculator.swift`), and audio files (such as `start_sound.caf` and `rest_start_sound.caf`), are the exclusive property of [Your Company/Developer Name] and are protected by copyright and other intellectual property laws. You may not copy, modify, distribute, sell, reverse-engineer, or create derivative works based on the App.
 
-You may not:
+### 4. Privacy and Analytics
 
-- Copy, modify or create derivative works based on the App.
-- Reverse engineer, decompile or attempt to extract the source code, except where permitted by law.
-- Use the App in any unlawful way or in connection with any illegal activity.
+Your privacy is important to us. Our use of your data is governed by our **Privacy Policy**, which is incorporated by reference into these Terms.
 
-## 5. In-app purchases and pricing
+The App uses an anonymous analytics service to help us improve its performance and features. This service does not collect any personal or health data. You may **opt-out** of this anonymous analytics collection at any time in the App's "Settings" menu.
 
-If the App offers paid features or in-app purchases in the future, pricing and payment will be handled through Apple's App Store. All purchases are subject to Apple's terms and conditions.
+### 5. Warranties and Service Availability
 
-We may change pricing or introduce new charges at any time, but any such changes will apply only going forwards.
+We will use reasonable care and skill to ensure the App is functional and as described. However, we do not guarantee that the App will be available at all times, or that it will be uninterrupted or free from errors, bugs, or viruses.
 
-## 6. Intellectual property
+This does not affect any statutory rights you may have as a consumer under UK law (such as the right to digital content of satisfactory quality).
 
-All rights, title and interest in and to the App and this website (including design, text, graphics and code) are owned by us or our licensors. You may not use our name, logo or brand without our prior written consent.
+### 6. Limitation of Liability
 
-## 7. Acceptable use
+6.1. Nothing in these Terms shall limit or exclude our liability for:
+    (a) death or personal injury caused by our negligence;
+    (b) fraud or fraudulent misrepresentation; or
+    (c) any other liability that cannot be excluded or limited by English law.
 
-You agree that you will not:
+6.2. Subject to clause 6.1, we shall not be liable to you, whether in contract, tort (including negligence), or otherwise, for any:
+    (a) loss of profit, loss of business, or loss of revenue;
+    (b) loss of data or information;
+    (c) loss of business opportunity or goodwill; or
+    (d) any indirect or consequential loss or damage,
+arising out of or in connection with your use of the App.
 
-- Use the App in any way that could damage, disable or overburden our services.
-- Attempt to gain unauthorised access to our systems or networks.
-- Use the App for any fraudulent or harmful purpose.
+6.3. Subject to clause 6.1, our total aggregate liability to you for all other losses arising under or in connection with these Terms shall be limited to the total amount (if any) paid by you for the App.
 
-## 8. Disclaimers
+### 7. Termination
 
-The App is provided on an "as is" and "as available" basis, without warranties of any kind, whether express or implied. To the fullest extent permitted by law, we disclaim all warranties, including implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+7.1. We may terminate or suspend your licence to use the App at any time, without prior notice or liability, if you breach these Terms.
 
-We do not guarantee that the App will be uninterrupted, secure, or error-free, or that any defects will be corrected.
+7.2. You may terminate this agreement at any time by deleting the App from your device.
 
-## 9. Limitation of liability
+7.3. Upon termination, your right to use the App will cease immediately. All sections of these Terms which by their nature should survive termination shall survive, including, without limitation, Section 1, 3, 5, 6, and 9.
 
-To the fullest extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential or punitive damages, or any loss of profits or data, arising out of or in connection with your use of the App or these Terms.
+### 8. Changes to These Terms
 
-Our total aggregate liability in connection with the App and these Terms shall, to the extent permitted by law, be limited to the amount you paid (if anything) for using the App in the 12 months before the event giving rise to the claim.
+We reserve the right to modify these Terms at any time. We will notify you of any changes by updating the "Last Updated" date of this document. For any *material* changes, we will provide reasonable notice, such as by an in-app notification, before the changes take effect. Your continued use of the App after any such changes constitutes your acceptance of the new Terms.
 
-## 10. Changes to the App
+### 9. Governing Law
 
-We may change, suspend or discontinue any part of the App at any time, including adding or removing features, with or without notice.
+These Terms shall be governed and construed in accordance with the laws of **England and Wales**. You agree that the courts of England and Wales will have exclusive jurisdiction to settle any dispute or claim that arises out of or in connection with these Terms.
 
-## 11. Changes to these Terms
+### 10. Contact Us
 
-We may update these Terms from time to time. When we do, we will change the "Last updated" date at the top of this page. If you continue to use the App after the new Terms take effect, you are deemed to have accepted them.
-
-## 12. Governing law
-
-These Terms are governed by the laws of England and Wales, and the courts of England and Wales shall have exclusive jurisdiction, except where local law in your country of residence does not allow this.
-
-## 13. Contact
-
-If you have any questions about these Terms, please contact us at [support@yourhiittimerapp.com](mailto:support@yourhiittimerapp.com).
-
----
-
-*These Terms are a simple template and do not constitute legal advice. You should adapt them to your own circumstances and seek legal advice if needed.*
+If you have any questions about these Terms, please contact us at:
+**[Your Support Email Address Here]**
