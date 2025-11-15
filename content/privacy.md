@@ -6,12 +6,39 @@ Our guiding principle is **Privacy by Design**. We collect the absolute minimum 
 
 ## Data Handling Summary
 
-| Data Type | Where It's Processed & Stored | Why We Need It |
-| :--- | :--- | :--- |
-| **Health Data** <br/> (VO2 Max, RHR, Age, Sex) | **On-Device ONLY.** <br/> It is *never* stored, collected, or transmitted by us. | **(Read-Only)** To calculate your "Cardio Age" locally on your phone. |
-| **Anonymous Analytics** <br/> (e.g., "screen_viewed", "timer_started") | **Sent to PostHog** (our analytics provider). <br/> This is not linked to your personal identity. | To understand which features are used, fix bugs, and improve the app. **This is optional and can be disabled.** |
-| **App Settings & History** <br/> (e.g., Timer settings, recent workouts) | **Locally on your device** (`UserDefaults`). <br/> This data may be part of your encrypted device backups (e.g., iCloud). | To save your preferences and provide the "Recent Workouts" list for your convenience. |
-| **Active Timer State** <br/> (e.g., current round, time remaining) | **Locally on your device** (`UserDefaults`). <br/> This is automatically deleted when your workout is complete. | To restore an active timer session if you close the app or your phone restarts. |
+---
+
+### Health Data
+*(VO2 Max, RHR, Age, Sex)*
+
+* **Where It's Processed & Stored:**
+    **On-Device ONLY.** It is *never* stored, collected, or transmitted by us.
+* **Why We Need It:**
+    **(Read-Only)** To calculate your "Cardio Age" locally on your phone.
+
+### Anonymous Analytics
+*(e.g., "screen_viewed", "timer_started")*
+
+* **Where It's Processed & Stored:**
+    **Sent to PostHog** (our analytics provider). This is not linked to your personal identity.
+* **Why We Need It:**
+    To understand which features are used, fix bugs, and improve the app. **This is optional and can be disabled.**
+
+### App Settings & History
+*(e.g., Timer settings, recent workouts)*
+
+* **Where It's Processed & Stored:**
+    **Locally on your device** (`UserDefaults`). This data may be part of your encrypted device backups (e.g., iCloud).
+* **Why We Need It:**
+    To save your preferences and provide the "Recent Workouts" list for your convenience.
+
+### Active Timer State
+*(e.g., current round, time remaining)*
+
+* **Where It's Processed & Stored:**
+    **Locally on your device** (`UserDefaults`). This is automatically deleted when your workout is complete.
+* **Why We Need It:**
+    To restore an active timer session if you close the app or your phone restarts.
 
 ---
 
