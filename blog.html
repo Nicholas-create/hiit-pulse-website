@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog – HIIT Timer</title>
+  <meta name="description" content="Short articles on HIIT, intervals and making workouts simple." />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #020617;
+      --ink-soft: #4b5563;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "SF Pro Text", sans-serif;
+      background: #ffffff;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px 40px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 6px 18px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      background: #ffffff;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 10px;
+      background: #ffffff;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    p.lead {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+      max-width: 36rem;
+      line-height: 1.6;
+    }
+
+    .post-list {
+      margin-top: 12px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .post-card {
+      padding: 16px 16px 14px;
+      border-radius: 18px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+
+    .post-meta {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .post-title {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .post-excerpt {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .store-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: #020617;
+      color: #f9fafb;
+      font-size: 12px;
+      border: 1px solid #020617;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .store-badge:hover {
+      background: #111827;
+      transform: translateY(-1px);
+    }
+
+    .store-badge-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .store-badge-label {
+      opacity: 0.7;
+      font-size: 11px;
+    }
+
+    .store-badge-name {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .store-note {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 560px) {
+      .content {
+        padding-inline: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="content">
+      <header class="nav">
+        <div class="logo">
+          <div class="logo-mark">⏱</div>
+          <a href="index.html" class="nav-link">HIIT Timer</a>
+        </div>
+        <a href="index.html" class="nav-link">Back to app →</a>
+      </header>
+
+      <span class="tag">Blog</span>
+      <h1>Make your HIIT sessions simpler.</h1>
+      <p class="lead">
+        Short, practical notes on intervals, intensity and getting more out of quick workouts – all
+        designed to pair nicely with the HIIT Timer app.
+      </p>
+
+      <section class="post-list">
+        <article class="post-card" id="post-20-minute-hiit">
+          <div class="post-meta">Training · 20-minute read</div>
+          <h2 class="post-title">How to structure a 20-minute HIIT session</h2>
+          <p class="post-excerpt">
+            Not every workout needs an hour. Here’s a simple 20-minute structure you can save as a
+            preset and reuse on busy days.
+          </p>
+          <p class="post-excerpt">
+            Try 5 rounds of: 40 seconds work, 20 seconds rest, followed by a 2-minute walk. The key is
+            choosing movements you can repeat with good form while your heart rate is high.
+          </p>
+        </article>
+
+        <article class="post-card" id="post-emom">
+          <div class="post-meta">Training · Short read</div>
+          <h2 class="post-title">EMOM vs classic intervals: which is better?</h2>
+          <p class="post-excerpt">
+            EMOM (“every minute on the minute”) is brilliant for strength-biased conditioning, while
+            classic work/rest intervals are better when you want to switch off your brain and just move.
+          </p>
+        </article>
+
+        <article class="post-card" id="post-focus">
+          <div class="post-meta">Mindset · Short read</div>
+          <h2 class="post-title">Why a simple timer beats a complicated workout app</h2>
+          <p class="post-excerpt">
+            When your screen has feeds, badges and menus, it’s easy to get lost before you even start
+            warming up. A clean timer keeps the main thing the main thing.
+          </p>
+        </article>
+      </section>
+
+      <div class="store-row">
+        <!-- Replace href with your real App Store link -->
+        <a class="store-badge" href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
+          <div class="store-badge-text">
+            <span class="store-badge-label">Download on the</span>
+            <span class="store-badge-name">App Store</span>
+          </div>
+        </a>
+        <span class="store-note">Turn these ideas into real sessions with HIIT Timer.</span>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

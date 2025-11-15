@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HIIT Timer – Simple Interval Training</title>
+  <meta name="description" content="A clean, focused HIIT timer for iPhone. Set your intervals once, tap start, and train." />
+
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f5f7fb;
+      --ink: #020617;
+      --ink-soft: #4b5563;
+      --accent: #2563eb;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "SF Pro Text", sans-serif;
+      background: #ffffff;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px 40px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 6px 18px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      background: #ffffff;
+    }
+
+    .nav-cta {
+      font-size: 14px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-cta span:last-child {
+      font-size: 15px;
+      transform: translateY(1px);
+    }
+
+    .nav-cta:hover {
+      background: #111827;
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      padding-block: 40px 32px;
+    }
+
+    .hero-text {
+      max-width: 480px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 14px;
+      background: #ffffff;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .hero-text h1 span {
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: 22px;
+      max-width: 28rem;
+    }
+
+    .store-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #020617;
+      color: #f9fafb;
+      font-size: 12px;
+      border: 1px solid #020617;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .store-badge:hover {
+      background: #111827;
+      transform: translateY(-1px);
+    }
+
+    .store-badge-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .store-badge-label {
+      opacity: 0.7;
+      font-size: 11px;
+    }
+
+    .store-badge-name {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .store-note {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    /* Phones */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .phone-backdrop {
+      position: absolute;
+      inset: 10% 6%;
+      background: #e5e7ff;
+      opacity: 0.5;
+      border-radius: 32px;
+    }
+
+    .phone-frame {
+      position: relative;
+      width: 210px;
+      max-width: 46vw;
+      border-radius: 30px;
+      padding: 10px;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      display: flex;
+      align-items: stretch;
+      z-index: 1;
+      transition: transform 0.18s ease;
+    }
+
+    .phone-frame.secondary {
+      transform: translateX(-18px) scale(0.96);
+      opacity: 0.96;
+    }
+
+    .phone-frame.primary {
+      transform: translateX(18px);
+    }
+
+    .phone-frame:hover {
+      transform: translateY(-2px) translateX(18px);
+    }
+
+    .phone-inner {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #000000;
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+    }
+
+    .phone-inner::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 64px;
+      height: 10px;
+      border-radius: 999px;
+      background: #000000;
+    }
+
+    .phone-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Footer */
+    .footer-links {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 12px;
+      color: #9ca3af;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .footer-links a:hover {
+      color: #6b7280;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-block: 28px 24px;
+      }
+
+      .hero-visual {
+        justify-content: flex-start;
+      }
+
+      .phone-backdrop {
+        inset: 4% 4%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-cta span:first-child {
+        display: none;
+      }
+
+      .hero-visual {
+        justify-content: center;
+      }
+
+      .phone-frame {
+        width: 190px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="content">
+      <!-- Top nav -->
+      <header class="nav">
+        <div class="logo">
+          <div class="logo-mark">⏱</div>
+          <!-- Replace with your app name if different -->
+          <span>HIIT Timer</span>
+        </div>
+        <!-- Replace href with your real App Store URL -->
+        <a href="https://apps.apple.com" class="nav-cta" target="_blank" rel="noopener noreferrer">
+          <span>Get the app</span>
+          <span>→</span>
+        </a>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-text">
+          <div class="eyebrow">HIIT timer for iPhone</div>
+
+          <h1>
+            <span>HIIT that fits</span>
+            <span>into any day.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            A clean HIIT timer. Set your intervals once, tap start, and train.
+          </p>
+
+          <div class="store-row">
+            <!-- Replace href with your real App Store URL -->
+            <a class="store-badge" href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
+              <div class="store-badge-text">
+                <span class="store-badge-label">Download on the</span>
+                <span class="store-badge-name">App Store</span>
+              </div>
+            </a>
+            <span class="store-note">iPhone only. Free to download.</span>
+          </div>
+        </div>
+
+        <!-- Phone screenshots -->
+        <div class="hero-visual" aria-label="App screenshots">
+          <div class="phone-backdrop"></div>
+
+          <div class="phone-frame secondary">
+            <div class="phone-inner">
+              <!-- Screenshot 2: presets / settings -->
+              <img src="images/hiit-timer-presets.png" alt="HIIT Timer app workout presets" />
+            </div>
+          </div>
+
+          <div class="phone-frame primary">
+            <div class="phone-inner">
+              <!-- Screenshot 1: main timer screen -->
+              <img src="images/hiit-timer-main.png" alt="HIIT Timer app main workout screen" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer links fixed to bottom -->
+      <footer class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
+        <a href="blog.html">Blog</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
