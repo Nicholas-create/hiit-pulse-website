@@ -1,63 +1,53 @@
-# HIIT Timer: GDPR Compliance Review
+# HIIT Timer Privacy Overview
 
-**Date:** 15 November 2025
-**Review Focus:** General Data Protection Regulation (GDPR)
+This document provides a clear, plain-English summary of the data practices within the HIIT Timer application.
 
-### Executive Summary
+Our guiding principle is **Privacy by Design**. We collect the absolute minimum data necessary to provide our features, and your most sensitive data (HealthKit) **never leaves your device**.
 
-The HIIT Timer app demonstrates an **exceptionally strong** data privacy posture and aligns well with the core principles of GDPR. The architecture is built on "Privacy by Design," particularly through its on-device processing of all sensitive HealthKit data.
+### Data Handling Summary
 
-The app's compliance is excellent. The few data-processing activities (analytics) are non-essential, provided with user consent (opt-out), and include a mechanism for user erasure.
+| Data Type | Where It's Processed & Stored | Why We Need It |
+| :--- | :--- | :--- |
+| **Health Data** <br/> (VO2 Max, RHR, Age, Sex) | **On-Device ONLY.** <br/> It is *never* stored, collected, or transmitted by us. | **(Read-Only)** To calculate your "Cardio Age" locally on your phone. |
+| **Anonymous Analytics** <br/> (e.g., "screen_viewed", "timer_started") | **Sent to PostHog** (our analytics provider). <br/> This is not linked to your personal identity. | To understand which features are used, fix bugs, and improve the app. **This is optional and can be disabled.** |
+| **App Settings & History** <br/> (e.g., Timer settings, recent workouts) | **Locally on your device** (`UserDefaults`). <br/> This data may be part of your encrypted device backups (e.g., iCloud). | To save your preferences and provide the "Recent Workouts" list for your convenience. |
+| **Active Timer State** <br/> (e.g., current round, time remaining) | **Locally on your device** (`UserDefaults`). <br/> This is automatically deleted when your workout is complete. | To restore an active timer session if you close the app or your phone restarts. |
 
-### GDPR Principles Analysis
+---
 
-#### 1. Lawfulness, Fairness, and Transparency
-**Finding:** Compliant.
-**Analysis:** The privacy policy is clear and transparent about the two main types of data processing: on-device HealthKit calculations and opt-out anonymous analytics. The `PrivacyInfo.xcprivacy` file correctly declares all data collection and tracking domains.
+### 1. HealthKit Data (Your Most Sensitive Data)
 
-#### 2. Purpose Limitation
-**Finding:** Excellent.
-**Analysis:** The app's data usage is strictly limited to its stated purpose.
-    * **HealthKit Data:** Used *only* for the "Cardio Age" feature.
-    * **Analytics Data:** Used *only* for product improvement.
-    * This is powerfully demonstrated by the *explicit removal* of health data from analytics events, as noted in `AnalyticsEvent.swift`: `// REMOVED: vo2MaxCalculated event to protect user health data privacy`.
+Our "Cardio Age" feature requires **read-only** permission to your Apple Health data.
 
-#### 3. Data Minimisation
-**Finding:** Excellent.
-**Analysis:** This is the app's strongest area.
-    * **HealthKit:** The app only requests **read-only** access to the four specific types required for its calculation. It performs calculations on-device and **never stores or transmits this health data**.
-    * **Analytics:** The analytics are anonymous and do not include any personal or health data.
-    * **Local Data:** Only necessary settings and history are stored locally.
+* **We Read:** Date of Birth, Biological Sex, VO2 Max, and Resting Heart Rate.
+* **We DO NOT Write:** The app does not write any data to your HealthKit store.
+* **ON-DEVICE PROCESSING:** All calculations are performed *only* on your device.
+* **WE NEVER SEE IT:** Your personal health data is **never** sent to our servers, **never** included in analytics, and **never** shared with any third party. We have actively designed the app to exclude it from all tracking.
 
-#### 4. Accuracy
-* **Finding:** Compliant.
-* **Analysis:** This principle applies to user data. The data stored by the app (settings, history) is a direct reflection of the user's own inputs and actions, making it accurate by definition. HealthKit data is read as-is from the user's trusted Health store.
+Your HealthKit data remains private to you, as it should be.
 
-#### 5. Storage Limitation
-**Finding:** Compliant.
-**Analysis:** The app demonstrates good storage limitation practices.
-    * **Health Data:** **No storage**, which is the best possible compliance.
-    * **Local History:** The app automatically culls the workout history to the 20 most recent unique sessions, preventing indefinite data storage.
-    * **Analytics Data:** This is the only area not fully in the app's control. The policy should (and now does) link to PostHog's privacy policy for their retention schedule.
+### 2. Anonymous Analytics (How We Improve the App)
 
-#### 6. Integrity and Confidentiality (Security)
-**Finding:** Strong.
-**Analysis:**
-    * **Confidentiality:** All sensitive health data (the most confidential data) is processed on-device, meaning it is never exposed to the developer or third parties.
-    * **Integrity:** Analytics data is transmitted over HTTPS (as defined in `PostHogAnalyticsService.swift`). The security review report confirms API keys are secured (moved to `.gitignore`) and other best practices are followed.
+To understand how our app is performing, we use **PostHog** for anonymous analytics.
 
-#### 7. Accountability & User Rights
-**Finding:** Excellent.
-**Analysis:** The app provides outstanding technical implementations for core GDPR user rights.
-    * **Right to Restrict Processing (Art. 18):** This is fully supported. The user can opt-out of analytics at any time via a toggle. The `PostHogAnalyticsService.swift` respects this toggle (`guard settingsService.isAnalyticsEnabled else { return }`).
-    * **Right to Erasure (Art. 17):** This is fully supported. The `PostHogAnalyticsService.swift` includes a `reset()` method. This method deletes the user's persistent anonymous ID from `UserDefaults` and generates a new one, effectively breaking the link to all past anonymous analytics data and "erasing" the user from the analytics dataset.
+* **What We Track:** We track anonymous events like which buttons are tapped or which screens are viewed. We **do not** track your personal health data, your age, your VO2 Max, or your specific timer settings.
+* **"Tracking" vs. "Anonymous":** We use a random, anonymous ID (e.g., `analytics_anonymous_user_id`) to see if a bug is affecting one person or many. Because this ID is "persistent" (stored on your device), Apple's App Store guidelines require us to declare this as "Tracking". This ID is **never** used to track you across other apps or websites and is **not linked to your personal identity**.
+* **Your Control:** You have two levels of control:
+    1.  **Opt-Out:** You can disable all anonymous analytics at any time in the app's "Settings" menu.
+    2.  **Reset (Right to Erasure):** You can also "Reset" your analytics ID from the Settings menu. This deletes your old ID and creates a new one, effectively erasing your past analytics history.
 
-### Recommendations
+### 3. Local Data (Your Settings & History)
 
-1.  **Implement the "Reset Analytics ID" Button:** The code *supports* the Right to Erasure with the `reset()` function in `PostHogAnalyticsService.swift`. You **must** ensure there is a button in the Settings UI (e.g., in the `PrivacySettingsSection.swift`) that actually calls this `reset()` method. This is critical for full GDPR compliance.
+The app saves your settings and workout history on your device for your convenience.
 
-2.  **Developer's Data Processing Agreement (DPA):** As the "Data Controller," you are responsible for your data processor (PostHog). Ensure you have a DPA in place with PostHog that is compliant with GDPR for transferring EU user data.
+* **What is saved:** Your preferred work/rest/round settings, sound/haptic preferences, and a list of your 20 most recent unique workouts.
+* **Where it is:** This data is stored in your app's local `UserDefaults` file. It **never** leaves your device, though it may be included in your private, encrypted iCloud or computer backups.
+* **Active Timers:** If you are in the middle of a workout, the app saves your current state (e.g., "Round 2, 01:30 left") so you can resume if the app quits. This file is automatically deleted when your workout is finished.
 
-### Conclusion
+### 4. Security
 
-The HIIT Timer app is in an excellent position regarding GDPR. Its "on-device" processing model for health data is a gold standard for privacy and makes compliance far simpler. By adding a UI button to trigger the existing `reset()` function, you will fully satisfy the core user rights requirements of GDPR.
+We take your privacy seriously. The app's API keys for analytics are not stored in the source code but are in a file that is excluded from our Git repository to prevent exposure. We have also conducted a security review to identify and remediate critical issues.
+
+### Questions?
+
+If you have any questions about our privacy practices, please contact us at **[Your Support Email Here]**.
