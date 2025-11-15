@@ -12,19 +12,19 @@ The app's compliance is excellent. The few data-processing activities (analytics
 ### GDPR Principles Analysis
 
 #### 1. Lawfulness, Fairness, and Transparency
-* **Finding:** Compliant.
-* **Analysis:** The privacy policy is clear and transparent about the two main types of data processing: on-device HealthKit calculations and opt-out anonymous analytics. The `PrivacyInfo.xcprivacy` file correctly declares all data collection and tracking domains.
+**Finding:** Compliant.
+**Analysis:** The privacy policy is clear and transparent about the two main types of data processing: on-device HealthKit calculations and opt-out anonymous analytics. The `PrivacyInfo.xcprivacy` file correctly declares all data collection and tracking domains.
 
 #### 2. Purpose Limitation
-* **Finding:** Excellent.
-* **Analysis:** The app's data usage is strictly limited to its stated purpose.
+**Finding:** Excellent.
+**Analysis:** The app's data usage is strictly limited to its stated purpose.
     * **HealthKit Data:** Used *only* for the "Cardio Age" feature.
     * **Analytics Data:** Used *only* for product improvement.
     * This is powerfully demonstrated by the *explicit removal* of health data from analytics events, as noted in `AnalyticsEvent.swift`: `// REMOVED: vo2MaxCalculated event to protect user health data privacy`.
 
 #### 3. Data Minimisation
-* **Finding:** Excellent.
-* **Analysis:** This is the app's strongest area.
+**Finding:** Excellent.
+**Analysis:** This is the app's strongest area.
     * **HealthKit:** The app only requests **read-only** access to the four specific types required for its calculation. It performs calculations on-device and **never stores or transmits this health data**.
     * **Analytics:** The analytics are anonymous and do not include any personal or health data.
     * **Local Data:** Only necessary settings and history are stored locally.
@@ -34,21 +34,21 @@ The app's compliance is excellent. The few data-processing activities (analytics
 * **Analysis:** This principle applies to user data. The data stored by the app (settings, history) is a direct reflection of the user's own inputs and actions, making it accurate by definition. HealthKit data is read as-is from the user's trusted Health store.
 
 #### 5. Storage Limitation
-* **Finding:** Compliant.
-* **Analysis:** The app demonstrates good storage limitation practices.
+**Finding:** Compliant.
+**Analysis:** The app demonstrates good storage limitation practices.
     * **Health Data:** **No storage**, which is the best possible compliance.
     * **Local History:** The app automatically culls the workout history to the 20 most recent unique sessions, preventing indefinite data storage.
     * **Analytics Data:** This is the only area not fully in the app's control. The policy should (and now does) link to PostHog's privacy policy for their retention schedule.
 
 #### 6. Integrity and Confidentiality (Security)
-* **Finding:** Strong.
-* **Analysis:**
+**Finding:** Strong.
+**Analysis:**
     * **Confidentiality:** All sensitive health data (the most confidential data) is processed on-device, meaning it is never exposed to the developer or third parties.
     * **Integrity:** Analytics data is transmitted over HTTPS (as defined in `PostHogAnalyticsService.swift`). The security review report confirms API keys are secured (moved to `.gitignore`) and other best practices are followed.
 
 #### 7. Accountability & User Rights
-* **Finding:** Excellent.
-* **Analysis:** The app provides outstanding technical implementations for core GDPR user rights.
+**Finding:** Excellent.
+**Analysis:** The app provides outstanding technical implementations for core GDPR user rights.
     * **Right to Restrict Processing (Art. 18):** This is fully supported. The user can opt-out of analytics at any time via a toggle. The `PostHogAnalyticsService.swift` respects this toggle (`guard settingsService.isAnalyticsEnabled else { return }`).
     * **Right to Erasure (Art. 17):** This is fully supported. The `PostHogAnalyticsService.swift` includes a `reset()` method. This method deletes the user's persistent anonymous ID from `UserDefaults` and generates a new one, effectively breaking the link to all past anonymous analytics data and "erasing" the user from the analytics dataset.
 
