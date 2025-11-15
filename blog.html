@@ -187,7 +187,24 @@
         padding-inline: 0;
       }
     }
+
+    .post-card {
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-2px);
+      border-color: #d1d5db;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--ink-soft);
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <div class="page">
@@ -207,37 +224,8 @@
         designed to pair nicely with the HIIT Timer app.
       </p>
 
-      <section class="post-list">
-        <article class="post-card" id="post-20-minute-hiit">
-          <div class="post-meta">Training · 20-minute read</div>
-          <h2 class="post-title">How to structure a 20-minute HIIT session</h2>
-          <p class="post-excerpt">
-            Not every workout needs an hour. Here’s a simple 20-minute structure you can save as a
-            preset and reuse on busy days.
-          </p>
-          <p class="post-excerpt">
-            Try 5 rounds of: 40 seconds work, 20 seconds rest, followed by a 2-minute walk. The key is
-            choosing movements you can repeat with good form while your heart rate is high.
-          </p>
-        </article>
-
-        <article class="post-card" id="post-emom">
-          <div class="post-meta">Training · Short read</div>
-          <h2 class="post-title">EMOM vs classic intervals: which is better?</h2>
-          <p class="post-excerpt">
-            EMOM (“every minute on the minute”) is brilliant for strength-biased conditioning, while
-            classic work/rest intervals are better when you want to switch off your brain and just move.
-          </p>
-        </article>
-
-        <article class="post-card" id="post-focus">
-          <div class="post-meta">Mindset · Short read</div>
-          <h2 class="post-title">Why a simple timer beats a complicated workout app</h2>
-          <p class="post-excerpt">
-            When your screen has feeds, badges and menus, it’s easy to get lost before you even start
-            warming up. A clean timer keeps the main thing the main thing.
-          </p>
-        </article>
+      <section class="post-list" id="post-list">
+        <div class="loading">Loading blog posts...</div>
       </section>
 
       <div class="store-row">
@@ -252,5 +240,83 @@
       </div>
     </main>
   </div>
+
+  <script>
+    // List of blog post markdown files
+    // This array will be automatically populated by scanning the content/blog directory
+    const blogPosts = [
+      '20-minute-hiit',
+      'emom-vs-intervals',
+      'simple-timer-philosophy'
+    ];
+
+    async function loadBlogPosts() {
+      const postListEl = document.getElementById('post-list');
+      postListEl.innerHTML = ''; // Clear loading message
+
+      // Fetch all blog posts
+      const posts = [];
+
+      for (const slug of blogPosts) {
+        try {
+          const response = await fetch(`content/blog/${slug}.md`);
+          if (!response.ok) continue;
+
+          const markdown = await response.text();
+
+          // Extract frontmatter
+          const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+          const match = markdown.match(frontmatterRegex);
+
+          if (match) {
+            const frontmatter = match[1];
+            const metadata = {};
+
+            frontmatter.split('\n').forEach(line => {
+              const [key, ...valueParts] = line.split(':');
+              if (key && valueParts.length) {
+                metadata[key.trim()] = valueParts.join(':').trim();
+              }
+            });
+
+            posts.push({
+              slug,
+              title: metadata.title || 'Untitled',
+              date: metadata.date || '',
+              category: metadata.category || 'Blog',
+              readTime: metadata.readTime || 'Read',
+              excerpt: metadata.excerpt || ''
+            });
+          }
+        } catch (error) {
+          console.error(`Error loading ${slug}:`, error);
+        }
+      }
+
+      // Sort posts by date (newest first)
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      // Render posts
+      posts.forEach(post => {
+        const article = document.createElement('article');
+        article.className = 'post-card';
+        article.onclick = () => window.location.href = `post.html?slug=${post.slug}`;
+
+        article.innerHTML = `
+          <div class="post-meta">${post.category} · ${post.readTime}</div>
+          <h2 class="post-title">${post.title}</h2>
+          <p class="post-excerpt">${post.excerpt}</p>
+        `;
+
+        postListEl.appendChild(article);
+      });
+
+      if (posts.length === 0) {
+        postListEl.innerHTML = '<p class="loading">No blog posts found.</p>';
+      }
+    }
+
+    loadBlogPosts();
+  </script>
 </body>
 </html>

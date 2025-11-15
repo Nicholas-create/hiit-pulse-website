@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="page-title">Blog Post – HIIT Timer</title>
+  <meta name="description" id="page-description" content="HIIT Timer blog post" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #020617;
+      --ink-soft: #4b5563;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "SF Pro Text", sans-serif;
+      background: #ffffff;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px 40px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 6px 18px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      background: #ffffff;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+    }
+
+    .post-header {
+      margin-bottom: 24px;
+    }
+
+    .post-meta {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    #markdown-content h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    #markdown-content h2 {
+      font-size: 20px;
+      margin-top: 28px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    #markdown-content h3 {
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    #markdown-content p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    #markdown-content strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    #markdown-content ul, #markdown-content ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    #markdown-content li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    #markdown-content a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    #markdown-content a:hover {
+      color: #1d4ed8;
+    }
+
+    #markdown-content hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 28px 0;
+    }
+
+    #markdown-content code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: ui-monospace, monospace;
+    }
+
+    #markdown-content pre {
+      background: #f3f4f6;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+
+    #markdown-content pre code {
+      background: none;
+      padding: 0;
+    }
+
+    #markdown-content blockquote {
+      border-left: 3px solid #e5e7eb;
+      padding-left: 16px;
+      margin: 16px 0;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+
+    .back-link {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 14px;
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    .back-link:hover {
+      color: #1d4ed8;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--ink-soft);
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="page">
+    <main class="content">
+      <header class="nav">
+        <div class="logo">
+          <div class="logo-mark">⏱</div>
+          <a href="index.html" class="nav-link">HIIT Timer</a>
+        </div>
+        <a href="blog.html" class="nav-link">← Back to blog</a>
+      </header>
+
+      <article>
+        <div class="post-header">
+          <div class="post-meta" id="post-metadata"></div>
+        </div>
+        <div id="markdown-content" class="loading">
+          Loading...
+        </div>
+      </article>
+
+      <a href="blog.html" class="back-link">← Back to all posts</a>
+    </main>
+  </div>
+
+  <script>
+    async function loadBlogPost() {
+      try {
+        // Get slug from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('slug');
+
+        if (!slug) {
+          document.getElementById('markdown-content').innerHTML = '<p>No blog post specified.</p>';
+          return;
+        }
+
+        // Fetch the markdown file
+        const response = await fetch(`content/blog/${slug}.md`);
+        if (!response.ok) {
+          throw new Error('Post not found');
+        }
+
+        const markdown = await response.text();
+
+        // Extract frontmatter (metadata between --- markers)
+        const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+        const match = markdown.match(frontmatterRegex);
+
+        if (match) {
+          const frontmatter = match[1];
+          const content = match[2];
+
+          // Parse frontmatter
+          const metadata = {};
+          frontmatter.split('\n').forEach(line => {
+            const [key, ...valueParts] = line.split(':');
+            if (key && valueParts.length) {
+              metadata[key.trim()] = valueParts.join(':').trim();
+            }
+          });
+
+          // Update page title and meta
+          if (metadata.title) {
+            document.getElementById('page-title').textContent = `${metadata.title} – HIIT Timer`;
+            document.title = `${metadata.title} – HIIT Timer`;
+          }
+          if (metadata.excerpt) {
+            document.getElementById('page-description').setAttribute('content', metadata.excerpt);
+          }
+
+          // Display metadata
+          const metaText = `${metadata.category || 'Blog'} · ${metadata.readTime || 'Read'} · ${metadata.date || ''}`;
+          document.getElementById('post-metadata').textContent = metaText;
+
+          // Render markdown content
+          const html = marked.parse(content);
+          document.getElementById('markdown-content').innerHTML = html;
+        } else {
+          // No frontmatter, just render the whole thing
+          const html = marked.parse(markdown);
+          document.getElementById('markdown-content').innerHTML = html;
+        }
+      } catch (error) {
+        console.error('Error loading blog post:', error);
+        document.getElementById('markdown-content').innerHTML = '<p>Error loading blog post. <a href="blog.html">Return to blog</a>.</p>';
+      }
+    }
+
+    loadBlogPost();
+  </script>
+</body>
+</html>
