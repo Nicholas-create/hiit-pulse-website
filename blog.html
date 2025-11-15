@@ -14,12 +14,15 @@
 
     :root {
       --ink: #020617;
-      --ink-soft: #4b5563;
+      --ink-soft: #475569;
+      --accent: #2563eb;
+      --accent-strong: #1d4ed8;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "SF Pro Text", sans-serif;
-      background: #ffffff;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.16), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f6f8ff 100%);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
     }
@@ -33,23 +36,55 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 24px 16px 40px;
+      padding: 24px 16px 72px;
     }
 
     .content {
       width: 100%;
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       flex: 1;
+      position: relative;
+      z-index: 1;
+      gap: 28px;
+    }
+
+    .content::before,
+    .content::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 999px;
+      filter: blur(70px);
+      opacity: 0.85;
+    }
+
+    .content::before {
+      inset: -140px auto auto -120px;
+      width: 320px;
+      height: 320px;
+      background: rgba(37, 99, 235, 0.2);
+    }
+
+    .content::after {
+      inset: auto -120px -160px auto;
+      width: 280px;
+      height: 280px;
+      background: rgba(14, 165, 233, 0.18);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-block: 6px 18px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(16px);
     }
 
     .logo {
@@ -61,103 +96,118 @@
     }
 
     .logo-mark {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
+      border: 1px solid rgba(148, 163, 184, 0.32);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
-      background: #ffffff;
+      font-size: 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
     }
 
     .nav-link {
       font-size: 14px;
-      opacity: 0.7;
+      color: #1e293b;
     }
 
     .tag {
       display: inline-flex;
       align-items: center;
-      padding: 4px 10px;
+      gap: 6px;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.35);
       font-size: 11px;
-      color: #6b7280;
-      margin-bottom: 10px;
-      background: #ffffff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 12px 26px rgba(148, 163, 184, 0.18);
     }
 
     h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: clamp(32px, 4.4vw, 48px);
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
     }
 
     p.lead {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--ink-soft);
-      margin-bottom: 20px;
-      max-width: 36rem;
-      line-height: 1.6;
+      margin-bottom: 16px;
+      max-width: 40rem;
+      line-height: 1.75;
     }
 
     .post-list {
-      margin-top: 12px;
+      margin-top: 4px;
       display: grid;
-      gap: 18px;
+      gap: 24px;
     }
 
     .post-card {
-      padding: 16px 16px 14px;
-      border-radius: 18px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
+      padding: 22px 24px 22px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(248, 250, 252, 0.94), rgba(226, 232, 240, 0.75));
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 60px rgba(37, 99, 235, 0.16);
     }
 
     .post-meta {
       font-size: 12px;
-      color: #9ca3af;
-      margin-bottom: 4px;
+      color: #64748b;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
 
     .post-title {
-      font-size: 17px;
-      margin-bottom: 6px;
+      font-size: 20px;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
     }
 
     .post-excerpt {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--ink-soft);
-      margin-bottom: 8px;
-      line-height: 1.5;
+      margin-bottom: 10px;
+      line-height: 1.7;
     }
 
     .store-row {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-top: 26px;
+      gap: 18px;
+      margin-top: 34px;
       flex-wrap: wrap;
     }
 
     .store-badge {
       display: inline-flex;
-      flex-direction: row;
       align-items: center;
-      gap: 10px;
-      padding: 9px 16px;
+      gap: 12px;
+      padding: 12px 18px;
       border-radius: 999px;
-      background: #020617;
-      color: #f9fafb;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      color: #f8fafc;
       font-size: 12px;
-      border: 1px solid #020617;
-      transition: background 0.18s ease, transform 0.18s ease;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.28);
     }
 
     .store-badge:hover {
-      background: #111827;
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 20px 42px rgba(37, 99, 235, 0.32);
     }
 
     .store-badge-text {
@@ -167,7 +217,7 @@
     }
 
     .store-badge-label {
-      opacity: 0.7;
+      opacity: 0.8;
       font-size: 11px;
     }
 
@@ -178,13 +228,60 @@
     }
 
     .store-note {
+      font-size: 13px;
+      color: #64748b;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .store-badge-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .footer-links {
+      margin-top: auto;
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(255, 255, 255, 0.75);
       font-size: 12px;
-      color: #9ca3af;
+      color: #64748b;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      box-shadow: 0 20px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .post-card {
+        padding: 20px 18px 20px;
+      }
     }
 
     @media (max-width: 560px) {
       .content {
         padding-inline: 0;
+      }
+
+      .store-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -200,7 +297,7 @@
         <a href="index.html" class="nav-link">Back to app →</a>
       </header>
 
-      <span class="tag">Blog</span>
+      <span class="tag">📝 Blog</span>
       <h1>Make your HIIT sessions simpler.</h1>
       <p class="lead">
         Short, practical notes on intervals, intensity and getting more out of quick workouts – all
@@ -243,6 +340,7 @@
       <div class="store-row">
         <!-- Replace href with your real App Store link -->
         <a class="store-badge" href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
+          <span class="store-badge-icon" aria-hidden="true"></span>
           <div class="store-badge-text">
             <span class="store-badge-label">Download on the</span>
             <span class="store-badge-name">App Store</span>
@@ -250,6 +348,13 @@
         </a>
         <span class="store-note">Turn these ideas into real sessions with HIIT Timer.</span>
       </div>
+
+      <footer class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
+        <a href="blog.html">Blog</a>
+      </footer>
     </main>
   </div>
 </body>

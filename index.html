@@ -15,15 +15,20 @@
     }
 
     :root {
-      --bg: #f5f7fb;
+      --bg: #f6f8ff;
+      --bg-strong: #dbeafe;
+      --bg-soft: rgba(59, 130, 246, 0.12);
       --ink: #020617;
-      --ink-soft: #4b5563;
+      --ink-soft: #475569;
       --accent: #2563eb;
+      --accent-strong: #1d4ed8;
+      --accent-glow: rgba(37, 99, 235, 0.22);
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "SF Pro Text", sans-serif;
-      background: #ffffff;
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
     }
@@ -37,16 +42,45 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 24px 16px 40px;
+      padding: 24px 16px 64px;
     }
 
     .content {
       width: 100%;
-      max-width: 1120px;
+      max-width: 1160px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content::before,
+    .content::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(52px);
+      opacity: 0.9;
+      border-radius: 999px;
+    }
+
+    .content::before {
+      width: 360px;
+      height: 360px;
+      background: var(--accent-glow);
+      top: -120px;
+      right: -140px;
+    }
+
+    .content::after {
+      width: 280px;
+      height: 280px;
+      background: rgba(14, 165, 233, 0.18);
+      bottom: -100px;
+      left: -120px;
     }
 
     /* Nav */
@@ -54,7 +88,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-block: 6px 18px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+      backdrop-filter: blur(18px);
+      margin-bottom: 20px;
     }
 
     .logo {
@@ -66,29 +106,31 @@
     }
 
     .logo-mark {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
+      border: 1px solid rgba(15, 23, 42, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
-      background: #ffffff;
+      font-size: 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
     .nav-cta {
       font-size: 14px;
-      padding: 8px 18px;
+      padding: 10px 22px;
       border-radius: 999px;
-      border: 1px solid var(--ink);
-      background: var(--ink);
-      color: #f9fafb;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      color: #f8fafc;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       letter-spacing: -0.01em;
-      transition: background 0.18s ease, transform 0.18s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.22);
     }
 
     .nav-cta span:last-child {
@@ -97,17 +139,17 @@
     }
 
     .nav-cta:hover {
-      background: #111827;
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 16px 34px rgba(37, 99, 235, 0.28);
     }
 
     /* Hero */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 48px;
       align-items: center;
-      padding-block: 40px 32px;
+      padding-block: 56px 40px;
     }
 
     .hero-text {
@@ -117,20 +159,24 @@
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      padding: 4px 10px;
+      gap: 6px;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.4);
       font-size: 11px;
-      color: #6b7280;
-      margin-bottom: 14px;
-      background: #ffffff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1d4ed8;
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 18px rgba(148, 163, 184, 0.2);
     }
 
     .hero-text h1 {
-      font-size: clamp(32px, 4vw, 48px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
+      font-size: clamp(36px, 4.6vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
     }
 
     .hero-text h1 span {
@@ -138,44 +184,52 @@
     }
 
     .hero-subtitle {
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.7;
       color: var(--ink-soft);
-      margin-bottom: 22px;
-      max-width: 28rem;
+      margin-bottom: 24px;
+      max-width: 32rem;
     }
 
     .store-row {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 8px;
+      gap: 16px;
+      margin-bottom: 14px;
       flex-wrap: wrap;
     }
 
     .store-badge {
       display: inline-flex;
-      flex-direction: row;
       align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
+      gap: 12px;
+      padding: 12px 18px;
       border-radius: 999px;
-      background: #020617;
-      color: #f9fafb;
+      background: #0f172a;
+      color: #f8fafc;
       font-size: 12px;
-      border: 1px solid #020617;
-      transition: background 0.18s ease, transform 0.18s ease;
+      border: 1px solid #0f172a;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.32);
+    }
+
+    .store-badge-icon {
+      font-size: 20px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
     }
 
     .store-badge:hover {
-      background: #111827;
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.42);
     }
 
     .store-badge-text {
       display: flex;
       flex-direction: column;
       line-height: 1.1;
+      text-align: left;
     }
 
     .store-badge-label {
@@ -190,8 +244,12 @@
     }
 
     .store-note {
-      font-size: 12px;
-      color: #9ca3af;
+      font-size: 13px;
+      color: #6b7280;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
     }
 
     /* Phones */
@@ -200,51 +258,56 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px 0;
+      padding: 24px 0;
     }
 
     .phone-backdrop {
       position: absolute;
-      inset: 10% 6%;
-      background: #e5e7ff;
-      opacity: 0.5;
-      border-radius: 32px;
+      inset: 10% 8%;
+      background: radial-gradient(circle at 35% 20%, rgba(147, 197, 253, 0.9), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.95), transparent 60%);
+      border-radius: 38px;
+      filter: blur(0.5px);
+      box-shadow: 0 30px 80px rgba(37, 99, 235, 0.24);
     }
 
     .phone-frame {
       position: relative;
-      width: 210px;
-      max-width: 46vw;
-      border-radius: 30px;
-      padding: 10px;
-      background: #ffffff;
-      border: 1px solid #d1d5db;
+      width: 220px;
+      max-width: 48vw;
+      border-radius: 32px;
+      padding: 12px;
+      background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+      border: 1px solid rgba(148, 163, 184, 0.45);
       display: flex;
       align-items: stretch;
       z-index: 1;
-      transition: transform 0.18s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.18);
     }
 
     .phone-frame.secondary {
-      transform: translateX(-18px) scale(0.96);
-      opacity: 0.96;
+      transform: translateX(-22px) scale(0.94) rotate(-2deg);
+      opacity: 0.94;
     }
 
     .phone-frame.primary {
-      transform: translateX(18px);
+      transform: translateX(26px) rotate(1.5deg);
     }
 
-    .phone-frame:hover {
-      transform: translateY(-2px) translateX(18px);
+    .phone-frame.primary:hover {
+      transform: translateX(26px) translateY(-6px) rotate(0deg);
+      box-shadow: 0 30px 70px rgba(15, 23, 42, 0.26);
     }
 
     .phone-inner {
       position: relative;
-      border-radius: 22px;
+      border-radius: 24px;
       overflow: hidden;
       background: #000000;
       width: 100%;
       aspect-ratio: 9 / 19.5;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
 
     .phone-inner::before {
@@ -267,16 +330,72 @@
     }
 
     /* Footer */
+    .features {
+      margin-top: 32px;
+      padding: 32px;
+      border-radius: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 32px 60px rgba(15, 23, 42, 0.12);
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(248, 250, 252, 0.9), rgba(226, 232, 240, 0.65));
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      box-shadow: 0 12px 26px rgba(148, 163, 184, 0.16);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 40px rgba(37, 99, 235, 0.18);
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--accent-strong);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
     .footer-links {
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid #e5e7eb;
+      margin-top: 48px;
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(255, 255, 255, 0.75);
       font-size: 12px;
-      color: #9ca3af;
+      color: #64748b;
       display: flex;
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
+      box-shadow: 0 20px 36px rgba(15, 23, 42, 0.08);
     }
 
     .footer-links a {
@@ -290,32 +409,71 @@
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
-        padding-block: 28px 24px;
-      }
-
-      .hero-visual {
-        justify-content: flex-start;
-      }
-
-      .phone-backdrop {
-        inset: 4% 4%;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .nav-cta span:first-child {
-        display: none;
+        padding-block: 44px 32px;
       }
 
       .hero-visual {
         justify-content: center;
       }
 
+      .phone-frame.primary {
+        transform: translateX(0) rotate(1deg);
+      }
+
+      .phone-frame.secondary {
+        display: none;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        padding: 12px 16px;
+      }
+
+      .hero {
+        gap: 32px;
+        padding-block: 36px 24px;
+      }
+
+      .features {
+        padding: 24px;
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .nav-cta span:first-child {
+        display: inline;
+      }
+
+      .hero-text h1 {
+        font-size: clamp(32px, 9vw, 44px);
+      }
+
+      .store-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .phone-frame {
-        width: 190px;
+        width: 200px;
+      }
+
+      .footer-links {
+        padding: 18px;
       }
     }
   </style>
@@ -340,7 +498,7 @@
       <!-- Hero -->
       <section class="hero">
         <div class="hero-text">
-          <div class="eyebrow">HIIT timer for iPhone</div>
+          <div class="eyebrow">⚡ HIIT timer for iPhone</div>
 
           <h1>
             <span>HIIT that fits</span>
@@ -354,12 +512,13 @@
           <div class="store-row">
             <!-- Replace href with your real App Store URL -->
             <a class="store-badge" href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
+              <span class="store-badge-icon" aria-hidden="true"></span>
               <div class="store-badge-text">
                 <span class="store-badge-label">Download on the</span>
                 <span class="store-badge-name">App Store</span>
               </div>
             </a>
-            <span class="store-note">iPhone only. Free to download.</span>
+            <span class="store-note">iPhone only · Free to download</span>
           </div>
         </div>
 
@@ -381,6 +540,24 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="features" aria-label="Why athletes love HIIT Timer">
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">🎯</span>
+          <h3>Zero-friction setup</h3>
+          <p>Save your favorite intervals once and start sessions in seconds. Less fiddling, more focused training.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">🔔</span>
+          <h3>Senses-ready cues</h3>
+          <p>Bold colors, haptic taps, and clear audio cues guide every round so you can keep your eyes on the workout.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">📈</span>
+          <h3>Progress that sticks</h3>
+          <p>Track streaks, export sessions, and celebrate personal bests with gently motivating reminders.</p>
+        </article>
       </section>
 
       <!-- Footer links fixed to bottom -->

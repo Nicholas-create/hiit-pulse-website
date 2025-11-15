@@ -14,12 +14,14 @@
 
     :root {
       --ink: #020617;
-      --ink-soft: #4b5563;
+      --ink-soft: #475569;
+      --accent: #2563eb;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "SF Pro Text", sans-serif;
-      background: #ffffff;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.16), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f6f8ff 100%);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
     }
@@ -33,23 +35,43 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 24px 16px 40px;
+      padding: 24px 16px 60px;
     }
 
     .content {
       width: 100%;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       flex: 1;
+      gap: 26px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content::before {
+      content: "";
+      position: absolute;
+      inset: -80px -80px auto auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.22);
+      filter: blur(64px);
+      z-index: -1;
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-block: 6px 18px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(16px);
     }
 
     .logo {
@@ -61,67 +83,109 @@
     }
 
     .logo-mark {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
+      border: 1px solid rgba(148, 163, 184, 0.32);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
-      background: #ffffff;
+      font-size: 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
     }
 
     .nav-link {
       font-size: 14px;
-      opacity: 0.7;
+      color: #1e293b;
     }
 
     .tag {
       display: inline-flex;
       align-items: center;
-      padding: 4px 10px;
+      gap: 6px;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.35);
       font-size: 11px;
-      color: #6b7280;
-      margin-bottom: 10px;
-      background: #ffffff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 12px 26px rgba(148, 163, 184, 0.18);
     }
 
     h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
     }
 
     p {
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.75;
       color: var(--ink-soft);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     ul {
       margin-left: 18px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     li {
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.65;
       color: var(--ink-soft);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .section {
-      margin-top: 20px;
+      margin-top: 18px;
       margin-bottom: 10px;
+      padding: 20px 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
     }
 
     .section h2 {
-      font-size: 18px;
-      margin-bottom: 6px;
+      font-size: 20px;
+      margin-bottom: 10px;
       color: var(--ink);
+    }
+
+    .footer-links {
+      margin-top: auto;
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(255, 255, 255, 0.75);
+      font-size: 12px;
+      color: #64748b;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      box-shadow: 0 20px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .section {
+        padding: 18px 18px;
+      }
     }
   </style>
 </head>
@@ -136,7 +200,7 @@
         <a href="index.html" class="nav-link">Back to app →</a>
       </header>
 
-      <span class="tag">Support</span>
+      <span class="tag">💬 Support</span>
       <h1>Need help with HIIT Timer?</h1>
       <p>
         If something doesn’t work as expected or you have a suggestion, we’d love to hear from you.
@@ -183,6 +247,13 @@
           helps other people discover it.
         </p>
       </div>
+
+      <footer class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
+        <a href="blog.html">Blog</a>
+      </footer>
     </main>
   </div>
 </body>
