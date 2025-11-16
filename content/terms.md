@@ -2,7 +2,7 @@
 
 **Last Updated:** 15 November 2025
 
-These Terms and Conditions ("Terms") govern your use of the HIIT Timer mobile application (the "App") provided by [Your Company/Developer Name] ("we", "us", "our").
+These Terms and Conditions ("Terms") govern your use of the HIIT Timer mobile application (the "App") provided by HIIT Pulse ("we", "us", "our").
 
 By downloading, accessing, or using the App, you agree to be bound by these Terms. If you disagree with any part of these terms, you must not use the App.
 
@@ -20,7 +20,7 @@ We grant you a limited, non-exclusive, non-transferable, revocable licence to us
 
 ### 3. Intellectual Property
 
-The App, its features, and all original content, including but not limited to its visual design, source code (such as `ActiveTimerViewModel.swift` and `CardioAgeCalculator.swift`), and audio files (such as `start_sound.caf` and `rest_start_sound.caf`), are the exclusive property of [Your Company/Developer Name] and are protected by copyright and other intellectual property laws. You may not copy, modify, distribute, sell, reverse-engineer, or create derivative works based on the App.
+The App and all of its features, functionality, and original content are the exclusive property of HIIT Pulse and are protected by copyright and other intellectual property laws. You may not copy, modify, distribute, sell, reverse-engineer, or create derivative works based on the App.
 
 ### 4. Privacy and Analytics
 
@@ -69,4 +69,4 @@ These Terms shall be governed and construed in accordance with the laws of **Eng
 ### 10. Contact Us
 
 If you have any questions about these Terms, please contact us at:
-**[Your Support Email Address Here]**
+**tryhiitpulse@gmail.com**

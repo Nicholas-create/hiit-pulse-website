@@ -1,5 +1,7 @@
 # HIIT Timer Privacy Overview
 
+**Last Updated:** 15 November 2025
+
 This document provides a clear, plain-English summary of the data practices within the HIIT Pulse Timer application.
 
 Our guiding principle is **Privacy by Design**. We collect the absolute minimum data necessary to provide our features, and your most sensitive data (HealthKit) **never leaves your device**.
@@ -14,10 +16,8 @@ Our guiding principle is **Privacy by Design**. We collect the absolute minimum 
 **Where It's Processed & Stored:**
 **On-Device ONLY.** It is **never** stored, collected, or transmitted by us.
 
-
 **Why We Need It:**
 **(Read-Only)** To calculate your "Cardio Age" locally on your phone.
-
 
 ### Anonymous Analytics
 *(e.g., "screen_viewed", "timer_started")*
@@ -70,7 +70,7 @@ To understand how our app is performing, we use **PostHog** for anonymous analyt
 
 **"Tracking" vs. "Anonymous":** We use a random, anonymous ID to see if a bug is affecting one person or many. Because this ID is "persistent" (stored on your device), Apple's App Store guidelines require us to declare this as "Tracking". This ID is **never** used to track you across other apps or websites and is **not linked to your personal identity**.
 
-**Your Control:** You have two levels of control. First, you can **Opt-Out** of all anonymous analytics at any time in the app's "Settings" menu. Second, you can **Reset (Right to Erasure)** your analytics ID from the Settings menu. This deletes your old ID and creates a new one, effectively erasing your past analytics history.
+**Your Control:** You can **Opt-Out** of all anonymous analytics at any time in the app's "Settings" menu.
 
 ## 3. Local Data (Your Settings & History)
 
@@ -88,4 +88,4 @@ We take your privacy seriously. The app's API keys for analytics are not stored 
 
 ### Questions?
 
-If you have any questions about our privacy practices, please contact us at **[Your Support Email Here]**.
+If you have any questions about our privacy practices, please contact us at **tryhiitpulse@gmail.com**.

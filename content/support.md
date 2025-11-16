@@ -98,4 +98,4 @@ We do collect some 100% anonymous analytics (like "app_opened") to fix bugs, whi
 
 We are always working to improve HIIT Timer and would love to hear your ideas. If you have a suggestion for a new feature or any other feedback, please send it to our support email.
 
-**Support Email:** [Your Support Email Address Here]
+**Support Email:** tryhiitpulse@gmail.com
