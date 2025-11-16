@@ -127,6 +127,28 @@
       color: #2563eb;
       text-decoration: underline;
     }
+
+    .footer-links {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 12px;
+      color: #9ca3af;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .footer-links a:hover {
+      color: #6b7280;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -146,6 +168,14 @@
       <div id="markdown-content">
         Loading...
       </div>
+
+      <!-- Footer links -->
+      <footer class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
+        <a href="blog.html">Blog</a>
+      </footer>
     </main>
   </div>
 
