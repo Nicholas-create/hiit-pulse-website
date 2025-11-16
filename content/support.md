@@ -1,6 +1,6 @@
 # HIIT Timer Support
 
-**Last Updated:** 15 November 2025
+**Last Updated:** 16 November 2025
 
 Welcome to the HIIT Timer support page. We are here to help you get the most out of the app.
 
@@ -36,7 +36,7 @@ This feature has three requirements to work. If it is not loading, please check 
 
 **How do I get VO2 Max data?**
 
-VO2 Max is typically recorded by an Apple Watch when you complete an outdoor run, walk, or hike of at least 20 minutes. You must start the workout from the "Workout" app on your watch.
+VO2 Max is typically recorded by an Apple Watch when you complete outdoor activities like running, walking, hiking, or cycling for at least 20 minutes. You must start the workout from the "Workout" app on your watch.
 
 **Is my Cardio Age accurate?**
 
