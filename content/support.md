@@ -10,7 +10,7 @@ Welcome to the HIIT Timer support page. We are here to help you get the most out
 
 If your question is not answered in the FAQ below, or if you are experiencing a bug, please contact us directly. We will do our best to get back to you as soon as possible.
 
-**Support Email:** [Your Support Email Address Here]
+**Support Email:** tryhiitpulse@gmail.com
 
 To help us resolve your issue quickly, please include your App Version (found in the Settings menu) and your device model (e.g., iPhone 15 Pro) if possible.
 
