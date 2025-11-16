@@ -1,6 +1,6 @@
 # HIIT Timer Privacy Overview
 
-This document provides a clear, plain-English summary of the data practices within the HIIT Timer application.
+This document provides a clear, plain-English summary of the data practices within the HIIT Pulse Timer application.
 
 Our guiding principle is **Privacy by Design**. We collect the absolute minimum data necessary to provide our features, and your most sensitive data (HealthKit) **never leaves your device**.
 
@@ -12,10 +12,12 @@ Our guiding principle is **Privacy by Design**. We collect the absolute minimum 
 *(VO2 Max, RHR, Age, Sex)*
 
 **Where It's Processed & Stored:**
-**On-Device ONLY.** It is *never* stored, collected, or transmitted by us.
+**On-Device ONLY.** It is **never** stored, collected, or transmitted by us.
+
 
 **Why We Need It:**
 **(Read-Only)** To calculate your "Cardio Age" locally on your phone.
+
 
 ### Anonymous Analytics
 *(e.g., "screen_viewed", "timer_started")*
